@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (canCheckBiometrics) {
           await auth
               .authenticate(
-            localizedReason: 'Let OS determine authentication method',
+            localizedReason: 'Notes App',
             options: const AuthenticationOptions(
               stickyAuth: true,
             ),
