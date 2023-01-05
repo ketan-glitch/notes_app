@@ -68,6 +68,7 @@ class _MyAppState extends State<MyApp> {
       },
       child: MaterialApp(
         navigatorKey: navigatorKey,
+        title: "Notes",
         themeMode: ThemeMode.light,
         theme: CustomTheme.dark,
         debugShowCheckedModeBanner: false,

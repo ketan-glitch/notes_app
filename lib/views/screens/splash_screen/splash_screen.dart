@@ -91,15 +91,15 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const Spacer(flex: 3),
             Text(
-              "App Title",
+              "Notes",
               style: Theme.of(context).textTheme.bodyText1?.copyWith(
                     fontSize: 26.0,
                   ),
             ),
-            Text(
-              "Subtitle",
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
+            // Text(
+            //   "Subtitle",
+            //   style: Theme.of(context).textTheme.bodyText2,
+            // ),
             const Spacer(),
           ],
         ),
