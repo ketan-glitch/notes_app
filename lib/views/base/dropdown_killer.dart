@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/views/base/custom_appbar.dart';
+import 'package:notes_app/views/base/custom_appbar.dart';
 
 import '../../services/input_decoration.dart';
 

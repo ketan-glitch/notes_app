@@ -13,14 +13,16 @@ class CustomDecoration {
     String? label,
     String? hint,
     TextStyle? hintStyle,
+    TextStyle? labelStyle,
     Widget? suffix,
     bool floating = false,
     Color color = Colors.transparent,
+    Color fillColor = const Color(0xFFF1F1F1),
   }) {
     assert(prefixText == null || icon == null, "Strings are equal So this message is been displayed!!");
 
     return InputDecoration(
-      fillColor: const Color(0xFFF1F1F1),
+      fillColor: fillColor,
       filled: true,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -93,21 +95,22 @@ class CustomDecoration {
       label: label != null
           ? Text(
               label,
-              style: GoogleFonts.roboto(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: textPrimary,
-              ),
+              style: labelStyle ??
+                  GoogleFonts.roboto(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: textPrimary,
+                  ),
             )
           : null,
-      hintText: hint ?? label,
+      hintText: hint,
       hintStyle: hintStyle ??
           GoogleFonts.roboto(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: textSecondary,
           ),
-      floatingLabelBehavior: floating ? FloatingLabelBehavior.always : FloatingLabelBehavior.never,
+      floatingLabelBehavior: floating ? FloatingLabelBehavior.auto : FloatingLabelBehavior.never,
       contentPadding: const EdgeInsets.fromLTRB(20, 10, 30, 13),
     );
   }

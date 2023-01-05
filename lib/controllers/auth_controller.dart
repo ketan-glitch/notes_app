@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
+import 'package:notes_app/controllers/firebase_controller.dart';
 
 import '../data/api/api_checker.dart';
 import '../data/models/contact_number.dart';
@@ -112,8 +114,9 @@ class AuthController extends GetxController implements GetxService {
     update();
   }
 
-  bool isLoggedIn() {
-    return authRepo.isLoggedIn();
+  Future<bool> isLoggedIn() async {
+    // return authRepo.isLoggedIn();
+    return await Get.find<FirebaseController>().googleSignIn.isSignedIn();
   }
 
   bool clearSharedData() {

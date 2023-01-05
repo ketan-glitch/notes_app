@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:flutter_template/views/screens/splash_screen/splash_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/auth_controller.dart';
 import '../../main.dart';
 import '../../services/route_helper.dart';
+import '../../views/screens/splash_screen/splash_screen.dart';
 
 class ApiChecker {
   static void checkApi(Response response) {

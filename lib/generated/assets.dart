@@ -6,4 +6,8 @@ class Assets {
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesPlaceholder = 'assets/images/placeholder.jpg';
   static const String imagesShimmer = 'assets/images/shimmer.gif';
+  static const String lotties10609Note = 'assets/lotties/10609-note.json';
+  static const String lotties110457NotesDocument = 'assets/lotties/110457-notes-document.json';
+  static const String lotties123639Notes = 'assets/lotties/123639-notes.json';
+  static const String lotties76120PaperNotes = 'assets/lotties/76120-paper-notes.json';
 }

@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/services/theme.dart';
+import 'package:notes_app/firebase_options.dart';
+import 'package:notes_app/services/theme.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'services/init.dart';
@@ -8,13 +10,14 @@ import 'views/screens/splash_screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   await Init().initialize();
   runApp(const MyApp());
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-final GlobalKey<ScaffoldMessengerState> snackBarKey =
-    GlobalKey<ScaffoldMessengerState>();
+final GlobalKey<ScaffoldMessengerState> snackBarKey = GlobalKey<ScaffoldMessengerState>();
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -35,22 +38,17 @@ class _MyAppState extends State<MyApp> {
       }
     });
 
-    OneSignal.shared.setNotificationWillShowInForegroundHandler(
-        (OSNotificationReceivedEvent event) {
+    OneSignal.shared.setNotificationWillShowInForegroundHandler((OSNotificationReceivedEvent event) {
       event.complete(event.notification);
     });
 
-    OneSignal.shared
-        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {});
+    OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult result) {});
 
-    OneSignal.shared
-        .setPermissionObserver((OSPermissionStateChanges changes) {});
+    OneSignal.shared.setPermissionObserver((OSPermissionStateChanges changes) {});
 
-    OneSignal.shared
-        .setSubscriptionObserver((OSSubscriptionStateChanges changes) {});
+    OneSignal.shared.setSubscriptionObserver((OSSubscriptionStateChanges changes) {});
 
-    OneSignal.shared.setEmailSubscriptionObserver(
-        (OSEmailSubscriptionStateChanges emailChanges) {});
+    OneSignal.shared.setEmailSubscriptionObserver((OSEmailSubscriptionStateChanges emailChanges) {});
   }
 
   @override

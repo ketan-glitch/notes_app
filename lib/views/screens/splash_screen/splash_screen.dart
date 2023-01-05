@@ -1,7 +1,16 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_template/views/base/custom_image.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:notes_app/services/route_helper.dart';
+import 'package:notes_app/views/base/custom_image.dart';
+import 'package:notes_app/views/screens/dashboard/dashboard_screen.dart';
+
+import '../../../controllers/auth_controller.dart';
+import '../../../controllers/firebase_controller.dart';
+import '../auth_screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,36 +23,27 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer.run(() {
-      Future.delayed(const Duration(seconds: 2), () {});
-      /*if (Get.find<AuthController>().isLoggedIn()) {
-        Get.find<AuthController>().getUserProfileData().then((value) {
-          Future.delayed(const Duration(seconds: 2), () {
-            if (Get.find<AuthController>().checkUserData()) {
-              Navigator.pushReplacement(
-                context,
-                getMaterialRoute(
-                  child: const Dashboard(),
-                ),
-              );
-            } else {
-              Navigator.pushReplacement(
-                context,
-                getMaterialRoute(
-                  child: const SignupScreen(),
-                ),
-              );
-            }
-          });
-        });
+    Timer.run(() async {
+      var nav = Navigator.of(context);
+      await Future.delayed(const Duration(seconds: 2), () {});
+      // var user = FirebaseAuth.instance.authStateChanges();
+      // user.listen((event) {
+      //   (event!.isisInitialValue);
+      // });
+      log("${await Get.find<FirebaseController>().googleSignIn.isSignedIn()}", name: "LOGIN");
+      if (await Get.find<AuthController>().isLoggedIn()) {
+        nav.pushReplacement(
+          getCustomRoute(
+            child: const DashboardScreen(),
+          ),
+        );
       } else {
-        Navigator.pushReplacement(
-          context,
-          getMaterialRoute(
+        nav.pushReplacement(
+          getCustomRoute(
             child: const LoginScreen(),
           ),
         );
-      }*/
+      }
     });
   }
 

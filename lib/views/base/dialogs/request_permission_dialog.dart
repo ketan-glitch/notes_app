@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/services/extensions.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:notes_app/services/extensions.dart';
 
 import '../common_button.dart';
 import '../custom_image.dart';

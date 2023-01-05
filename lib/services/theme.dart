@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Color primaryColor = const Color(0xFF941f37);
-Color secondaryColor = const Color(0xFF941f37).withOpacity(.47);
+Color primaryColor = const Color(0xff0080e5);
+Color secondaryColor = const Color(0xff0080e5).withOpacity(.47);
 Color backgroundDark = const Color(0xff231F20);
 Color backgroundLight = const Color(0xffffffff);
 
@@ -75,20 +75,20 @@ class CustomTheme {
         // fontSize: 16.0,
         fontWeight: FontWeight.w400,
       ),
-      bodyText1: GoogleFonts.montserrat(
+      bodyText1: GoogleFonts.inter(
         // fontSize: 14.0,
         fontWeight: FontWeight.w400,
       ),
-      bodyText2: GoogleFonts.montserrat(
+      bodyText2: GoogleFonts.inter(
         // fontSize: 12.0,
         fontWeight: FontWeight.w400,
       ),
-      headline1: GoogleFonts.montserrat(),
-      headline2: GoogleFonts.montserrat(),
-      headline3: GoogleFonts.montserrat(),
-      headline4: GoogleFonts.montserrat(),
-      headline5: GoogleFonts.montserrat(),
-      headline6: GoogleFonts.montserrat(),
+      headline1: GoogleFonts.inter(),
+      headline2: GoogleFonts.inter(),
+      headline3: GoogleFonts.inter(),
+      headline4: GoogleFonts.inter(),
+      headline5: GoogleFonts.inter(),
+      headline6: GoogleFonts.inter(),
     ),
   );
 }
