@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:notes_app/services/route_helper.dart';
 import 'package:notes_app/views/base/custom_image.dart';
 import 'package:notes_app/views/screens/dashboard/dashboard_screen.dart';
@@ -20,11 +23,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final LocalAuthentication auth = LocalAuthentication();
   @override
   void initState() {
     super.initState();
     Timer.run(() async {
       var nav = Navigator.of(context);
+
+      var canCheckBiometrics = await auth.canCheckBiometrics;
+
+      if (!canCheckBiometrics) {
+        Fluttertoast.showToast(msg: "Device do not support biometric auth");
+      }
+
       await Future.delayed(const Duration(seconds: 2), () {});
       // var user = FirebaseAuth.instance.authStateChanges();
       // user.listen((event) {
@@ -32,11 +43,26 @@ class _SplashScreenState extends State<SplashScreen> {
       // });
       log("${await Get.find<FirebaseController>().googleSignIn.isSignedIn()}", name: "LOGIN");
       if (await Get.find<AuthController>().isLoggedIn()) {
-        nav.pushReplacement(
-          getCustomRoute(
-            child: const DashboardScreen(),
-          ),
-        );
+        if (canCheckBiometrics) {
+          await auth
+              .authenticate(
+            localizedReason: 'Let OS determine authentication method',
+            options: const AuthenticationOptions(
+              stickyAuth: true,
+            ),
+          )
+              .then((value) {
+            if (value) {
+              nav.pushReplacement(
+                getCustomRoute(
+                  child: const DashboardScreen(),
+                ),
+              );
+            } else {
+              exit(0);
+            }
+          });
+        }
       } else {
         nav.pushReplacement(
           getCustomRoute(
